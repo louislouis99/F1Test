@@ -1,0 +1,27 @@
+﻿@using Newtonsoft.Json.Linq
+@using F1Test.ViewModels
+
+@model ScheduledRaces
+
+@{
+    ViewBag.Title = "Races";
+}
+
+
+<div class="row">
+    @foreach (var race in Model.Races)
+    {
+        <div class="col-auto m-2">
+
+            @Html.ActionLink(@race["raceName"].ToString(), "Results",
+                     new { id = race["round"].ToString() },
+                     htmlAttributes: new { @class = "btn btn-success" })
+        </div>
+    }
+</div>
+
+<div>
+    @Html.ActionLink("Back", "Years", new { id = Model.Decade })
+</div>
+
+

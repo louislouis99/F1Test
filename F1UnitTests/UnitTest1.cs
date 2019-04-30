@@ -15,17 +15,36 @@ namespace F1UnitTests
         {
             var service = new ScheduleService();
             var results = service.GetSchedule(1994);
-
-            var race = results["MRData"]["RaceTable"]["Races"][0]["raceName"].ToString();
-            Assert.IsTrue(race == "Brazilian Grand Prix");
+           
+            var name = results[0]["raceName"].ToString();
+            Assert.IsTrue(name == "Brazilian Grand Prix");
         }
 
+        [TestMethod]
         public void TestGetYearsF1()
         {
             var service = new ScheduleService();
-            var results = service.GetRaceYears().ToList();
+            var results = service.GetScheduleYears().ToList();
 
             Assert.IsTrue(results.Min() == 1950 && results.Max() == 2019);
+        }
+
+        [TestMethod]
+        public void TestGetScheduleDecades()
+        {
+            var service = new ScheduleService();
+            var results = service.GetScheduleDecades();
+
+            Assert.IsTrue(results.First() == 1950);
+        }
+
+        [TestMethod]
+        public void TestGetScheduledYearsByDecade()
+        {
+            var service = new ScheduleService();
+            var results = service.GetScheduleYears(2010);
+
+            Assert.IsTrue(results.Min() == 2010 && results.Max() == 2019);
         }
     }
 

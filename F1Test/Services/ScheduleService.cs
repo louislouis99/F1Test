@@ -10,18 +10,38 @@ namespace F1Test.Services
 {
     public class ScheduleService
     {
-        public JObject GetSchedule(int year)
+        public JArray GetSchedule(int year)
         {
             using (var client = new WebClient())
             {
-                var result = client.DownloadString($"https://ergast.com/api/f1/{year}.json");
-                return JObject.Parse(result);
-            }            
+                var jsonResult = client.DownloadString($"https://ergast.com/api/f1/{year}.json");              
+                var result = JObject.Parse(jsonResult);
+                JArray resultList = (JArray)result["MRData"]["RaceTable"]["Races"];
+
+                return resultList;
+            }
         }
 
-        public IEnumerable<int> GetRaceYears()
+        public IEnumerable<int> GetScheduleDecades()
         {
-            return Enumerable.Range(1950, DateTime.Now.Year);
+            var years = GetScheduleYears();
+            var results = years.Where(c => c % 10 == 0);
+
+            return results;
+        }
+
+        public IEnumerable<int> GetScheduleYears(int decade)
+        {
+            var results = GetScheduleYears()
+                .Where(c => c >= decade && c <= decade + 9);
+
+            return results;
+        }
+
+        public IEnumerable<int> GetScheduleYears()
+        {
+            var start = 1950;
+            return Enumerable.Range(start, (DateTime.Now.Year - start) + 1);
         }
     }
 }
