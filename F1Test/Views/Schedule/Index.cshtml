@@ -4,12 +4,15 @@
     ViewBag.Title = "Index";
 }
 
-<div class="row">
-    @foreach (var decade in Model)
-    {
-        <div class="col-auto">
-            @Html.ActionLink(decade.ToString() ,"Years", new { id = decade }, htmlAttributes: new { @class = "btn btn-primary" })
-        </div>
-    }
+<div style="margin-top:100px;">
+    <div class="row mt-3">
+        @foreach (var decade in Model)
+        {
+            <div class="col-auto">
+                @Html.ActionLink(decade.ToString(), "Years", new { id = decade },
+                         htmlAttributes: new { @class = "btn btn-primary" })
+            </div>
+        }
+    </div>
 </div>
 

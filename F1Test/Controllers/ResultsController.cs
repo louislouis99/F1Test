@@ -13,13 +13,13 @@ namespace F1Test.Controllers
         private ResultService _resultService = new ResultService();
 
         // GET: Results
-        public ActionResult Index(int id, int round)
+        public ActionResult Index(int id, int arg)
         {
-            var resultsArray = _resultService.GetResultsForRound(id, round);
+            var resultsArray = _resultService.GetResultsForRound(id, arg);
             var result = new ScheduledRaces
             {
                 Races = resultsArray,
-                Round = round,
+                Round = arg,
                 Year = id
             };
 

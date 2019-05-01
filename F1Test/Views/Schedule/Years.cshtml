@@ -4,15 +4,18 @@
     ViewBag.Title = "Years";
 }
 
-<div class="row">
-    @foreach (var year in Model)
-    {
-        <div class="col-auto">
-            @Html.ActionLink(year.ToString(), "Races", new { id = year }, htmlAttributes: new { @class = "btn btn-warning" })
-        </div>
-    }
-</div>
+<div style="margin-top:100px;">
 
-<div>
-    @Html.ActionLink("Back", "Index")
+    <div class="row mt-3">
+        @foreach (var year in Model)
+        {
+            <div class="col-auto">
+                @Html.ActionLink(year.ToString(), "Races", new { id = year }, htmlAttributes: new { @class = "btn btn-warning" })
+            </div>
+        }
+    </div>
+
+    <div>
+        <a href="javascript:history.back()">Back</a>
+    </div>
 </div>

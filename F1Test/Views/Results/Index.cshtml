@@ -5,35 +5,69 @@
     ViewBag.Title = "Index";
 }
 
-<div class="row">
-    <div class="col-auto">
-        @Model.Races[0]["raceName"]
+<div class="border-bottom border-danger fixed-top">
+    <div class="row pl-3 pt-3 bg-light" style="margin-top:50px;">
+        <div class="col-md-3 font-weight-bold">
+            @Model.Races[0]["raceName"]
+        </div>
+
+        <div class="col-md-3 font-weight-bold">
+            @Model.Races[0]["Circuit"]["circuitName"]
+        </div>
+
+        <div class="col-md-2 font-weight-bold">
+            @Model.Races[0]["date"]
+        </div>
     </div>
 
-    <div class="col-auto">
-        @Model.Races[0]["Circuit"]["circuitName"]
-    </div>
 </div>
 
-<div>
+<div style="margin-top:110px;">
     @foreach (var result in Model.Races[0]["Results"])
     {
-        <div class="row">
-            <div class="col-auto">
+        <div class="row border-bottom border-warning p-1">
+            <div class="col-md-1 text-md-right font-weight-bold">
                 @result["position"]
             </div>
 
-            <div class="col-auto">
+            <div class="col-md-2">
                 @result["Driver"]["givenName"] @result["Driver"]["familyName"]
             </div>
 
-            <div class="col-auto">
+            <div class="col-md-2">
                 @result["Constructor"]["name"]
+            </div>
+
+            <div class="col-md-1 text-md-right">
+                @result["grid"]
+            </div>
+
+            <div class="col-md-1 text-md-right">
+                @result["laps"]
+            </div>
+
+            <div class="col-md-2">
+                @result["status"]
+            </div>
+
+            <div class="col-md-1 text-md-right">
+                @if (result["FastestLap"] != null)
+                {
+                    @result["FastestLap"]["Time"]["time"]
+                }
+            </div>
+
+            <div class="col-md-1 text-md-right">
+                @if (result["Time"] != null)
+                {
+                    @result["Time"]["time"]
+                }
             </div>
         </div>
     }
+
+    <div class="mb-5">
+        <a href="javascript:history.back()">Back</a>
+    </div>
 </div>
 
-<div>
-    <a href="javascript:history.back()">Back</a>
-</div>

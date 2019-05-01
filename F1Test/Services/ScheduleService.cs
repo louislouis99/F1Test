@@ -14,6 +14,7 @@ namespace F1Test.Services
         {
             using (var client = new WebClient())
             {
+                client.Encoding = System.Text.Encoding.UTF8;
                 var jsonResult = client.DownloadString($"https://ergast.com/api/f1/{year}.json");              
                 var result = JObject.Parse(jsonResult);
                 JArray resultList = (JArray)result["MRData"]["RaceTable"]["Races"];
