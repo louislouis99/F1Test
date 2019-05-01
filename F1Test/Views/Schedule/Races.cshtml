@@ -13,9 +13,9 @@
     {
         <div class="col-auto m-2">
 
-            @Html.ActionLink(@race["raceName"].ToString(), "Results",
-                     new { id = race["round"].ToString() },
-                     htmlAttributes: new { @class = "btn btn-success" })
+            @Html.ActionLink(@race["raceName"].ToString(), "Index", "Results",
+                          new { id = race["season"].ToString(), round = race["round"].ToString() },
+                          htmlAttributes: new { @class = "btn btn-success" })
         </div>
     }
 </div>

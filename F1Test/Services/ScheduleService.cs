@@ -22,6 +22,7 @@ namespace F1Test.Services
             }
         }
 
+        // get a list of decades
         public IEnumerable<int> GetScheduleDecades()
         {
             var years = GetScheduleYears();
@@ -30,6 +31,7 @@ namespace F1Test.Services
             return results;
         }
 
+        // get a list of years for a decade
         public IEnumerable<int> GetScheduleYears(int decade)
         {
             var results = GetScheduleYears()
@@ -38,6 +40,7 @@ namespace F1Test.Services
             return results;
         }
 
+        // get all years of f1 
         public IEnumerable<int> GetScheduleYears()
         {
             var start = 1950;

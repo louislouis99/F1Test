@@ -10,5 +10,7 @@ namespace F1Test.ViewModels
     {
         public JArray Races { get; set; }
         public int Decade { get; set; }
+        public int Year { get; set; }
+        public int Round { get; set; }
     }
 }

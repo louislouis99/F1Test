@@ -1,6 +1,39 @@
-﻿
+﻿@using F1Test.ViewModels
+@model ScheduledRaces
+
 @{
     ViewBag.Title = "Index";
 }
 
-Results
+<div class="row">
+    <div class="col-auto">
+        @Model.Races[0]["raceName"]
+    </div>
+
+    <div class="col-auto">
+        @Model.Races[0]["Circuit"]["circuitName"]
+    </div>
+</div>
+
+<div>
+    @foreach (var result in Model.Races[0]["Results"])
+    {
+        <div class="row">
+            <div class="col-auto">
+                @result["position"]
+            </div>
+
+            <div class="col-auto">
+                @result["Driver"]["givenName"] @result["Driver"]["familyName"]
+            </div>
+
+            <div class="col-auto">
+                @result["Constructor"]["name"]
+            </div>
+        </div>
+    }
+</div>
+
+<div>
+    <a href="javascript:history.back()">Back</a>
+</div>
