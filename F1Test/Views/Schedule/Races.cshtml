@@ -25,13 +25,13 @@
                 @race["round"]
             </div>
 
-            <div class="col-md-1 text-md-right">
+            <div class="col-md-2">
                 @race["date"]
             </div>
 
             <div class="col-md-3">
                 @Html.ActionLink(race["raceName"].ToString(), "Index", "Results",
-                                                       new { id = race["season"].ToString(), arg = race["round"].ToString() }, null)
+                    new { id = race["season"].ToString(), arg = race["round"].ToString() }, null)
             </div>
 
             <div class="col-md-3">
