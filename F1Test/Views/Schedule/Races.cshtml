@@ -6,8 +6,15 @@
 @{
     ViewBag.Title = "Races";
 }
+<div class="border-bottom border-danger fixed-top">
+    <div class="row pl-3 pt-3 bg-light" style="margin-top:50px;">
+        <div class="col-md-1">
+            <a href="javascript:history.back()">Back</a>
+        </div>        
+    </div>
+</div>
 
-<div style="margin-top:100px;">
+<div style="margin-top:110px;">
 
     @foreach (var race in Model.Races)
     {
@@ -24,7 +31,7 @@
 
             <div class="col-md-3">
                 @Html.ActionLink(race["raceName"].ToString(), "Index", "Results",
-                                   new { id = race["season"].ToString(), arg = race["round"].ToString() }, null)
+                                                       new { id = race["season"].ToString(), arg = race["round"].ToString() }, null)
             </div>
 
             <div class="col-md-3">
@@ -38,9 +45,5 @@
     }
 </div>
 
-<hr />
-<div>
-    <a href="javascript:history.back()">Back</a>
-</div>
 
 
