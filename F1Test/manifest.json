@@ -1,0 +1,13 @@
+{
+    "name": "F1",
+    "short_name": "F1",
+    "description": "Formula One",
+    "icons": [
+      {
+        "src": "Content/Images/logo192.png",
+        "sizes": "192x192"
+      }
+    ],
+    "display": "standalone",
+    "start_url": "."
+}

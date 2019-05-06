@@ -10,13 +10,12 @@
     <div class="row pl-2 pt-3 bg-light justify-content-start" style="margin-top:50px;">
         <div class="col-auto">
             <a href="javascript:history.back()">
-                <i class="fas fa-chevron-left text-danger"></i>
+                <i class="fas fa-chevron-left text-danger m-1"></i>
+                <span class="font-weight-bold text-secondary">
+                    @Model.Year
+                </span>
             </a>
-        </div>     
-        
-        <div class="col-auto font-weight-bold text-secondary">
-            @Model.Year
-        </div>
+        </div>            
     </div>
 </div>
 
@@ -26,30 +25,32 @@
     {
         var location = race["Circuit"]["Location"];
 
-        <div class="row py-2 border-bottom border-warning">
-            <div class="col-md-2 text-md-right">
-                <span class="font-weight-bold">
-                    @race["round"]:
-                </span>
-                @race["date"]
-            </div>
+    <div class="row py-2 border-bottom border-warning">
 
-            <div class="col-md-3">
-                @Html.ActionLink(race["raceName"].ToString(), "Index", "Results",
-                    new { id = race["season"].ToString(), arg = race["round"].ToString() },
-                    htmlAttributes: new { @class="font-weight-bold" })
+        <div class="col-md-3">
+            @*@Html.ActionLink(race["raceName"].ToString(), "Index", "Results",
+                new { id = race["season"].ToString(), arg = race["round"].ToString() },
+                htmlAttributes: new { @class = "font-weight-bold text-dark" })*@
 
-                <i class="fas fa-chevron-right text-danger"></i>
-            </div>
+            <a href="/results/index/@race["season"]/@race["round"]" class="text-dark font-weight-bold">
+                @race["raceName"]
+                <i class="fas fa-chevron-right text-success ml-1"></i>
+            </a>
 
-            <div class="col-md-3">
-                @race["Circuit"]["circuitName"]
-            </div>
-
-            <div class="col-md-3">
-                @location["locality"], @location["country"]
-            </div>
         </div>
+
+        <div class="col-md-2 text-md-right">
+            @race["date"]
+        </div>
+
+        <div class="col-md-3">
+            @race["Circuit"]["circuitName"]
+        </div>
+
+        <div class="col-md-3">
+            @location["locality"], @location["country"]
+        </div>
+    </div>
     }
 </div>
 
