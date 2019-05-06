@@ -5,68 +5,133 @@
     ViewBag.Title = "Index";
 }
 
-<div class="border-bottom border-danger fixed-top">
-    <div class="row pl-3 pt-3 bg-light" style="margin-top:50px;">
-        <div class="col-md-1">
-            <a href="javascript:history.back()">Back</a>
-        </div>
-        <div class="col-md-3 font-weight-bold">
-            @Model.Races[0]["raceName"]
-        </div>
+@if (Model.Races.Count > 0)
+{
+    <div class="border-bottom border-danger fixed-top bg-light" style="height:100px; z-index:50;">
+        <div class="row pl-2 pt-3 bg-light justify-content-start" style="margin-top:50px;">
+            <div class="col-auto font-weight-bold">
+                <a href="javascript:history.back()">
+                    <i class="fas fa-chevron-left text-danger"></i>
+                </a>
 
-        <div class="col-md-3 font-weight-bold">
-            @Model.Races[0]["Circuit"]["circuitName"]
-        </div>
+                @Model.Races[0]["raceName"],
 
-        <div class="col-md-2 font-weight-bold">
-            @Model.Races[0]["date"]
+                <div class="d-none d-md-inline">
+                    @Model.Races[0]["Circuit"]["circuitName"]
+                </div>
+
+                <span class="text-secondary">
+                    @Model.Races[0]["date"]
+                </span>
+            </div>
         </div>
     </div>
-</div>
 
-<div class="mb-5" style="margin-top:110px;">
-    @foreach (var result in Model.Races[0]["Results"])
-    {
-        <div class="row border-bottom border-warning p-1">
-            <div class="col-md-1 text-md-right font-weight-bold">
-                @result["position"]
-            </div>
+    <div class="fixed-top bg-light shadow py-2 d-none d-md-inline" style="margin-top:100px">
+        <div class="container font-weight-bold text-success">
+            <div class="row">
+                <div class="col-4">
+                    Driver
+                </div>
 
-            <div class="col-md-2">
-                @result["Driver"]["givenName"] @result["Driver"]["familyName"]
-            </div>
+                <div class="col-2">
+                    Constructor
+                </div>
 
-            <div class="col-md-2">
-                @result["Constructor"]["name"]
-            </div>
+                <div class="col-1 text-right">
+                    Grid
+                </div>
 
-            <div class="col-md-1 text-md-right">
-                @result["grid"]
-            </div>
+                <div class="col-1 text-right">
+                    Laps
+                </div>
 
-            <div class="col-md-1 text-md-right">
-                @result["laps"]
-            </div>
+                <div class="col-2">
+                    Status
+                </div>
 
-            <div class="col-md-2">
-                @result["status"]
-            </div>
+                <div class="col-1 text-right">
+                    Fastest
+                </div>
 
-            <div class="col-md-1 text-md-right">
-                @if (result["FastestLap"] != null)
-                {
-                    @result["FastestLap"]["Time"]["time"]
-                }
-            </div>
-
-            <div class="col-md-1 text-md-right">
-                @if (result["Time"] != null)
-                {
-                    @result["Time"]["time"]
-                }
+                <div class="col-1 text-right">
+                    Time
+                </div>
             </div>
         </div>
-    }
-</div>
+    </div>
 
+    @*spacer for md because of column headings*@
+    <div class="d-none d-md-block py-4"></div>
+
+    <div style="margin-top:100px;">
+        @foreach (var result in Model.Races[0]["Results"])
+        {
+            <div class="row border-bottom border-primary py-3">
+                <div class="col-md-4 col-auto font-weight-bold">
+                    @result["Driver"]["givenName"] @result["Driver"]["familyName"]
+                </div>
+
+                <div class="col-md-2 col-auto font-weight-bold text-secondary">
+                    @result["Constructor"]["name"]
+                </div>
+
+                <div class="col-md-1 text-md-right">
+                    <div class="d-md-none d-inline text-secondary">
+                        Grid:
+                    </div>
+                    @result["grid"]
+                </div>
+
+                <div class="col-md-1 text-md-right">
+                    <div class="d-md-none d-inline text-secondary">
+                        Laps:
+                    </div>
+                    @result["laps"]
+                </div>
+
+                <div class="col-md-2">
+                    <div class="d-md-none d-inline text-secondary">
+                        Status:
+                    </div>
+                    @result["status"]
+                </div>
+
+                <div class="col-md-1 text-md-right">
+
+                    @if (result["FastestLap"] != null)
+                    {
+                        <div class="d-md-none d-inline text-secondary">
+                            Fastest lap:
+                        </div>
+
+                        @result["FastestLap"]["Time"]["time"]
+                    }
+                </div>
+
+                <div class="col-md-1 text-md-right">
+
+                    @if (result["Time"] != null)
+                    {
+                        <div class="d-md-none d-inline text-secondary">
+                            Time:
+                        </div>
+
+                        @result["Time"]["time"]
+                    }
+                </div>
+            </div>
+        }
+    </div>
+}
+else
+{
+
+<div style="margin-top:100px;">
+    <a href="javascript:history.back()">
+        <i class="fas fa-chevron-left text-danger"></i>
+    </a>
+    Nothing found
+</div>
+}
 

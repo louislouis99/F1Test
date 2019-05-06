@@ -36,7 +36,8 @@ namespace F1Test.Controllers
             var results = new ScheduledRaces
             {
                 Decade = decade,
-                Races = resultsArray
+                Races = resultsArray,
+                Year = id
             };
 
             return View(results);
